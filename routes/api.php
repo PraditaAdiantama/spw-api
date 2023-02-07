@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::group(['prefix' => ''],function(){
+    Route::apiResource('products', ProductController::class);
+});
