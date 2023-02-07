@@ -32,4 +32,11 @@ class ProductController extends Controller
         $data->update($request->validated());
         return response()->json('Successfully Update');
     }
+
+    public function destroy($id)
+    {
+        $data = Product::find($id);
+        $data->delete();
+        return response()->json('Succesfully Deleted');
+    }
 }
