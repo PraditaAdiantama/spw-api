@@ -13,4 +13,10 @@ class ProductController extends Controller
         $data = Product::all()->toArray();
         return response()->json($data);
     }
+
+    public function show($id)
+    {
+        $data = Product::find($id);
+        return response()->json($data);
+    }
 }
