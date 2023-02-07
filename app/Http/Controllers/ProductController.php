@@ -19,4 +19,10 @@ class ProductController extends Controller
         $data = Product::find($id);
         return response()->json($data);
     }
+
+    public function store(ProductRequest $request)
+    {
+        Product::create($request->validated());
+        return response()->json('Succesfully Created');
+    }
 }
