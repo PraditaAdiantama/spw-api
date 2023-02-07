@@ -25,4 +25,11 @@ class ProductController extends Controller
         Product::create($request->validated());
         return response()->json('Succesfully Created');
     }
+
+    public function update(ProductRequest $request, $id)
+    {
+        $data = Product::find($id);
+        $data->update($request->validated());
+        return response()->json('Successfully Update');
+    }
 }
