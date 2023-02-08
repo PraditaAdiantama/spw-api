@@ -84,8 +84,10 @@ class CatalogController extends Controller
      * @param  \App\Models\Catalog  $catalog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Catalog $catalog)
+    public function destroy($id)
     {
-        //
+        $data = Catalog::find($id);
+        $data->delete();
+        return response()->json($data,204);
     }
 }
