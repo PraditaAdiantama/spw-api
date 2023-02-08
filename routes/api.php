@@ -23,5 +23,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => ''],function(){
     Route::apiResource('products', ProductController::class);
-    Route::apiResource('catalog', CatalogController::class);
+    Route::apiResource('catalogs', CatalogController::class);
 });

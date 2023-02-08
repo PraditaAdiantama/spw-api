@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CatalogRequest extends FormRequest
 {
@@ -26,5 +28,13 @@ class CatalogRequest extends FormRequest
         return [
             'name' => ['required']
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'message' => "Validation Error",
+            "errors" => $validator->errors()
+        ],402));
     }
 }

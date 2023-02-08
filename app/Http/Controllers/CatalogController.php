@@ -15,8 +15,10 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        $data = Catalog::all()->toArray();
-        return response()->json($data,200);
+        $catalog = Catalog::all()->toArray();
+        return response()->json([
+            'catalogs' => $catalog
+        ], 200);
     }
 
     /**
@@ -37,8 +39,10 @@ class CatalogController extends Controller
      */
     public function store(CatalogRequest $request)
     {
-        $data = Catalog::create($request->validated());
-        return response()->json($data,201);
+        $catalog = Catalog::create($request->validated());
+        return response()->json([
+            "catalog" => $catalog
+        ], 201);
     }
 
     /**
@@ -49,8 +53,10 @@ class CatalogController extends Controller
      */
     public function show($id)
     {
-        $data = Catalog::find($id);
-        return response()->json($data,200);
+        $catalog = Catalog::find($id);
+        return response()->json([
+            "catalog" => $catalog
+        ], 200);
     }
 
     /**
@@ -73,9 +79,11 @@ class CatalogController extends Controller
      */
     public function update(CatalogRequest $request, $id)
     {
-        $data = Catalog::find($id);
-        $data->update($request->validated());
-        return response()->json($data,202);
+        $catalog = Catalog::find($id);
+        $catalog->update($request->validated());
+        return response()->json([
+            "catalog" => $catalog
+        ], 202);
     }
 
     /**
@@ -86,8 +94,8 @@ class CatalogController extends Controller
      */
     public function destroy($id)
     {
-        $data = Catalog::find($id);
-        $data->delete();
-        return response()->json($data,204);
+        $catalog = Catalog::find($id);
+        $catalog->delete();
+        return response()->json($catalog, 204);
     }
 }
