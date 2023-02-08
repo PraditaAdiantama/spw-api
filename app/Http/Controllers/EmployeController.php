@@ -42,7 +42,7 @@ class EmployeController extends Controller
         $employe = Employe::create($request->validated());
         return response()->json([
             'employe' => $employe
-        ]);
+        ],201);
     }
 
     /**
@@ -77,9 +77,14 @@ class EmployeController extends Controller
      * @param  \App\Models\Employe  $employe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employe $employe)
+    public function update(Request $request,$id)
     {
-        //
+        $employe = Employe::find($id);
+        $employe->update($request->all());
+        return response()->json([
+            'message' => 'Employe succesfully created',
+            'employe' => $employe
+        ],202);
     }
 
     /**
