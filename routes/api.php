@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\ProductController;
 use App\Models\Catalog;
 use Illuminate\Http\Request;
@@ -24,4 +25,5 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => ''],function(){
     Route::apiResource('products', ProductController::class);
     Route::apiResource('catalogs', CatalogController::class);
+    Route::apiResource('employes', EmployeController::class);
 });
