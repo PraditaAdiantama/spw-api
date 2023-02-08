@@ -38,7 +38,7 @@ class CatalogController extends Controller
     public function store(CatalogRequest $request)
     {
         $data = Catalog::create($request->validated());
-        return response()->json($data);
+        return response()->json($data,201);
     }
 
     /**
@@ -71,9 +71,11 @@ class CatalogController extends Controller
      * @param  \App\Models\Catalog  $catalog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Catalog $catalog)
+    public function update(CatalogRequest $request, $id)
     {
-        //
+        $data = Catalog::find($id);
+        $data->update($request->validated());
+        return response()->json($data,202);
     }
 
     /**
