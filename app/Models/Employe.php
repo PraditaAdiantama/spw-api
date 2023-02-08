@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Employe extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'id'
+    ];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }
