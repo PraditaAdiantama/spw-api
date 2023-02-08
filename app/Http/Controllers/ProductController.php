@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function index()
     {
         $data = Product::all()->toArray();
-        return response()->json($data);
+        return response()->json($data, 200);
     }
 
     public function show($id)
@@ -22,21 +22,21 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        Product::create($request->validated());
-        return response()->json('Succesfully Created');
+        $data = Product::create($request->validated());
+        return response()->json($data, 201);
     }
 
     public function update(ProductRequest $request, $id)
     {
         $data = Product::find($id);
         $data->update($request->validated());
-        return response()->json('Successfully Update');
+        return response()->json($data);
     }
 
     public function destroy($id)
     {
         $data = Product::find($id);
         $data->delete();
-        return response()->json('Succesfully Deleted');
+        return response()->json('Succesfully Deleted', 204);
     }
 }
