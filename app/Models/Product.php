@@ -9,9 +9,15 @@ class Product extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'catalog_id'
+    ];
 
-    protected $guarded = ['id'];
+    protected $guarded = [
+        'id'
+    ];
 
     public function catalog()
     {

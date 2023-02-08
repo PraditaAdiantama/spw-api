@@ -9,10 +9,17 @@ class Catalog extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = [
+        'id'
+    ];
 
-    public function product()
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
+    public function products()
     {
-        return $this->hasMany(Product::class, 'foreign_key');
+        return $this->hasMany(Product::class);
     }
 }

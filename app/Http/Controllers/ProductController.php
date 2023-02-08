@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Catalog;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $product = Product::with('catalog')->get();
-        return response()->json([
-            "products" => $product
-        ], 200);
+        $catalogName = $request->input('catalog');
+        $catalog = Catalog::where('name', $catalogName)->with('products')->first();
+        $products = $catalog->products;
+        return response()->json([   
+            "products" => $products,
+        
+        ]);
     }
 
     public function show($id)
@@ -21,7 +25,7 @@ class ProductController extends Controller
         $product = Product::with('catalog')->find($id);
         return response()->json([
             'product' => $product,
-        ], 200);
+        ]);
     }
 
     public function store(ProductRequest $request)
@@ -46,6 +50,6 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-        return response()->json($product,204);
+        return response()->noContent();
     }
 }

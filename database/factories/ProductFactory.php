@@ -19,7 +19,8 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'price' => $this->faker->numberBetween(0,100) * 1000,
-            'stock' => $this->faker->numberBetween(1,100)
+            'stock' => $this->faker->numberBetween(1,100),
+            'catalog_id' => $this->faker->numberBetween(1,10)
         ];
     }
 }

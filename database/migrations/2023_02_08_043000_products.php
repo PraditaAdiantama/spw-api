@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('catalog_id');
             $table->foreign('catalog_id')->references('id')->on('catalogs')->restrictOnDelete();
 
+            $table->timestamps();
         });
     }
 

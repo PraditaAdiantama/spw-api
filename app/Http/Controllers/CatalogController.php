@@ -13,7 +13,7 @@ class CatalogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $catalog = Catalog::all()->toArray();
         return response()->json([
@@ -80,7 +80,7 @@ class CatalogController extends Controller
     public function update(CatalogRequest $request, $id)
     {
         $catalog = Catalog::find($id);
-        $catalog->update($request->validated());
+        $catalog->update($request->all());
         return response()->json([
             "catalog" => $catalog
         ], 202);
