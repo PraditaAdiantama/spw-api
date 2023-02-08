@@ -49,7 +49,10 @@ class EmployeController extends Controller
      */
     public function show($id)
     {
-        //
+        $employe = Employe::find($id);
+        return response()->json([
+            'employe' => $employe
+        ]);
     }
 
     /**
