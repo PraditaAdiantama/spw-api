@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $product = Product::all()->toArray();
+        $product = Product::with('catalog')->get();
         return response()->json([
             "products" => $product
         ], 200);
@@ -18,15 +18,15 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = Product::with('catalog')->find($id);
         return response()->json([
-            'product' => $product
+            'product' => $product,
         ], 200);
     }
 
     public function store(ProductRequest $request)
     {
-        $products = $request->validated();
+        $products = $request->all();
         Product::create($products);
         return response()->json([
             'product' => $products

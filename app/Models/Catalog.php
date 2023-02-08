@@ -10,4 +10,9 @@ class Catalog extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function product()
+    {
+        return $this->hasMany(Product::class, 'foreign_key');
+    }
 }

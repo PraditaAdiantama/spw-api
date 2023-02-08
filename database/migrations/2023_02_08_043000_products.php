@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('name')->nullable(false);
             $table->bigInteger('price')->nullable(false);
             $table->integer('stock')->nullable(false);
-            $table->timestamps();
+            
+            $table->foreignId('catalog_id');
+            $table->foreign('catalog_id')->references('id')->on('catalogs')->restrictOnDelete();
+
         });
     }
 
