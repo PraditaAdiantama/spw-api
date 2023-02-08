@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CatalogRequest;
 use App\Models\Catalog;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,10 @@ class CatalogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CatalogRequest $request)
     {
-        //
+        $data = Catalog::create($request->validated());
+        return response()->json($data);
     }
 
     /**
