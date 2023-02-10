@@ -30,4 +30,5 @@ Route::group(['prefix' => ''], function () {
 
     Route::post('/auth/login', [AuthController::class, 'login']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
+    Route::get('/auth', [AuthController::class, 'index']);
 });

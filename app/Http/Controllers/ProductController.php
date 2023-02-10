@@ -5,19 +5,27 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Catalog;
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $catalogName = $request->input('catalog');
-        $catalog = Catalog::where('name', $catalogName)->with('products')->first();
-        $products = $catalog->products;
-        return response()->json([   
-            "products" => $products,
-        
-        ]);
+        try {
+            $catalogName = $request->input('catalog');
+            $catalog = Catalog::where('name', $catalogName)->with('products')->first();
+            $products = $catalog->products;
+
+            return response()->json([
+                "products" => $products,
+
+            ]);
+        } catch (Exception $ex) {
+            return response()->json([
+                'products' => Product::all()
+            ]);
+        }
     }
 
     public function show($id)

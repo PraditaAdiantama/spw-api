@@ -3,14 +3,26 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EmployeRequest;
 use App\Models\Employe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    public function index(Request $request)
+    {
+        $tokenInput  = $request->input('token');
+        $employe = Employe::where('api_token', $tokenInput)->first();
+        if(!$employe){
+            return response()->json([
+                'message' => 'Something went wrong'
+            ]);
+        }
+        return response()->json([
+            'employe' => $employe
+        ]);
+    }
+
     public function login(Request $request)
     {
         $body = $request->only('username', 'password');
