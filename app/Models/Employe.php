@@ -18,7 +18,8 @@ class Employe extends Authencticatable
     protected $hidden = [
         'created_at',
         'updated_at',
-        'password'
+        'password',
+        'api_token'
     ];
 
     public function setPasswordAttribute($value)
