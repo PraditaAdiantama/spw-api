@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EmployeRequest;
 use App\Models\Employe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use App\Models\User;
 
 class EmployeController extends Controller
 {
@@ -30,7 +33,7 @@ class EmployeController extends Controller
     {
         //
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -41,8 +44,8 @@ class EmployeController extends Controller
     {
         $employe = Employe::create($request->validated());
         return response()->json([
-            'employe' => $employe
-        ],201);
+            'employe' => $employe   
+        ], 201);
     }
 
     /**
@@ -77,14 +80,14 @@ class EmployeController extends Controller
      * @param  \App\Models\Employe  $employe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $employe = Employe::find($id);
         $employe->update($request->all());
         return response()->json([
             'message' => 'Employe succesfully created',
             'employe' => $employe
-        ],202);
+        ], 202);
     }
 
     /**

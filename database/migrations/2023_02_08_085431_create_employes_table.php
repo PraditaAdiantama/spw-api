@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('fullname');
             $table->string('username');
             $table->string('password');
+            $table->string('api_token')->nullable();
             $table->string('address');
             $table->enum('gender',[
                 'male',
