@@ -24,11 +24,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group(['prefix' => ''], function () {
-    Route::apiResource('products', ProductController::class);
-    Route::apiResource('catalogs', CatalogController::class);
-    Route::apiResource('employes', EmployeController::class);
+    Route::middleware('auth:api')->group(function (){
+        Route::apiResource('products', ProductController::class);
+        Route::apiResource('catalogs', CatalogController::class);
+        Route::apiResource('employes', EmployeController::class);
+    });
 
     Route::post('/auth/login', [AuthController::class, 'login']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
-    Route::get('/auth', [AuthController::class, 'index']);
+    Route::post('/auth', [AuthController::class, 'index']);
 });
