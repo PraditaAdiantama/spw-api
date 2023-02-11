@@ -4,7 +4,9 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionsController;
 use App\Models\Catalog;
+use App\Models\Transactions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +30,7 @@ Route::group(['prefix' => ''], function () {
         Route::apiResource('products', ProductController::class);
         Route::apiResource('catalogs', CatalogController::class);
         Route::apiResource('employes', EmployeController::class);
+        Route::post('transactions', [TransactionsController::class, 'store']);
     });
 
     Route::post('/auth/login', [AuthController::class, 'login']);
