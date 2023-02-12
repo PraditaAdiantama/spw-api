@@ -16,7 +16,10 @@ class TransactionsController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transactions::all()->toArray();
+        return response()->json([
+            'transactions' => array_reverse($transactions)
+        ]);
     }
 
     /**

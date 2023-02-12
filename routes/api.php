@@ -30,7 +30,7 @@ Route::group(['prefix' => ''], function () {
         Route::apiResource('products', ProductController::class);
         Route::apiResource('catalogs', CatalogController::class);
         Route::apiResource('employes', EmployeController::class);
-        Route::post('transactions', [TransactionsController::class, 'store']);
+        Route::apiResource('transactions', TransactionsController::class);
     });
 
     Route::post('/auth/login', [AuthController::class, 'login']);
